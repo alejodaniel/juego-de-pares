@@ -7,7 +7,7 @@ package OrdenPares;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
+import OrdenPares.AleatorioNivel2;
 /**
  *
  * @author Alejandro
@@ -52,6 +52,9 @@ public class Nivel extends javax.swing.JFrame {
 
     }
 
+    int errores = 1;
+    int aciertos = 1;
+
     private void habiDesa(JButton btn) {
 
         if (!caraArriba) {
@@ -60,13 +63,14 @@ public class Nivel extends javax.swing.JFrame {
             pbtn[0] = btn;
             caraArriba = true;
             segundo = false;
-            puntuacion += 20;
 
         } else {
             btn.setEnabled(false);
             img2 = (ImageIcon) btn.getDisabledIcon();
             pbtn[1] = btn;
             segundo = true;
+//            acierto.setText("" + aciertos++);
+            puntuacion += 20;
 
             ganar();
 
@@ -77,15 +81,20 @@ public class Nivel extends javax.swing.JFrame {
         if (caraArriba && segundo) {
 
             if (img1.getDescription().compareTo(img2.getDescription()) != 0) {
+
                 pbtn[0].setEnabled(true);
                 pbtn[1].setEnabled(true);
                 if (puntuacion > 10) {
+//                    error.setText("" + errores++);
                     puntuacion -= 10;
                 }
-
+                error.setText("" + errores++);
+            } else {
+                acierto.setText("" + aciertos++);
             }
 
             caraArriba = false;
+
         }
     }
 
@@ -113,6 +122,7 @@ public class Nivel extends javax.swing.JFrame {
         segundo = false;
         caraArriba = false;
         puntuacion = 0;
+        
 
     }
 
@@ -171,8 +181,8 @@ public class Nivel extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        acierto = new javax.swing.JLabel();
+        error = new javax.swing.JLabel();
         puntaje = new javax.swing.JLabel();
         reiniciar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -621,9 +631,9 @@ public class Nivel extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("PUNTAJE:");
 
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        acierto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        error.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         puntaje.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -664,8 +674,8 @@ public class Nivel extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(acierto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(error, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(puntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(89, 89, 89))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -683,11 +693,11 @@ public class Nivel extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(acierto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(error, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
@@ -868,7 +878,8 @@ public class Nivel extends javax.swing.JFrame {
     }//GEN-LAST:event_boton20ActionPerformed
 
     private void reiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reiniciarActionPerformed
-        reinicio();
+      reinicio();
+        
     }//GEN-LAST:event_reiniciarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -877,6 +888,7 @@ public class Nivel extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel acierto;
     private javax.swing.JButton boton1;
     private javax.swing.JButton boton10;
     private javax.swing.JButton boton11;
@@ -897,12 +909,11 @@ public class Nivel extends javax.swing.JFrame {
     private javax.swing.JButton boton7;
     private javax.swing.JButton boton8;
     private javax.swing.JButton boton9;
+    private javax.swing.JLabel error;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel puntaje;
     private javax.swing.JButton reiniciar;

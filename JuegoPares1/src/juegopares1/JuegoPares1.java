@@ -5,10 +5,10 @@
  */
 package juegopares1;
 
-import OrdenPares.AleatorioBotones;
+
 import OrdenPares.Inicio;
-import OrdenPares.Interfaz;
-import OrdenPares.Nivel2;
+
+
 
 /**
  *
