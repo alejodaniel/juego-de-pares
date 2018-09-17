@@ -6,7 +6,9 @@
 package juegopares1;
 
 import OrdenPares.AleatorioBotones;
+import OrdenPares.Inicio;
 import OrdenPares.Interfaz;
+import OrdenPares.Nivel2;
 
 /**
  *
@@ -18,9 +20,10 @@ public class JuegoPares1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Interfaz p = new Interfaz();
-//        AleatorioBotones ab = new AleatorioBotones();
-        p.setVisible(true);
+        Inicio in = new Inicio();
+        in.setVisible(true);
+                
+       
        
     }
     

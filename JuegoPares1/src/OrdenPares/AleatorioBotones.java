@@ -11,15 +11,15 @@ public class AleatorioBotones {
 
     public int[] getPosicionBotonesAleatorios() {
 //array del limite de numeros q queremos hacer en este caso 6 para q se mescle aleatoriamente
-        int[] numeros = new int[6];
+        int[] numeros = new int[10];
         int count = 0;
 
-        while (count < 6) {
+        while (count < 10) {
             Random r = new Random();
-            int na = r.nextInt(3) + 1;
+            int na = r.nextInt(5) + 1;
             int nvr = 0;
 
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 10; i++) {
                 if (numeros[i] == na) {
                     nvr++;
                 }
