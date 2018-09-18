@@ -5,14 +5,18 @@
  */
 package OrdenPares;
 
+import java.io.IOException;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import OrdenPares.AleatorioNivel2;
-/**
- *
- * @author Alejandro
- */
+
 public class Nivel extends javax.swing.JFrame {
+
+    public Clip clip;
+    public String ruta = "/Sonido/";
 
     private AleatorioNivel2 log = new AleatorioNivel2();
     private boolean caraArriba = false;
@@ -25,6 +29,50 @@ public class Nivel extends javax.swing.JFrame {
     public Nivel() {
         initComponents();
         imagenesBotonesAleatorio();
+    }
+
+    public void sonidoEleccion(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
+    }
+
+    public void sonidoAcierto(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
+    }
+
+    public void sonidoError(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
+    }
+
+    public void sonidoReinicio(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
     }
 
     public void imagenesBotonesAleatorio() {
@@ -70,6 +118,7 @@ public class Nivel extends javax.swing.JFrame {
             pbtn[1] = btn;
             segundo = true;
 //            acierto.setText("" + aciertos++);
+
             puntuacion += 20;
 
             ganar();
@@ -85,11 +134,14 @@ public class Nivel extends javax.swing.JFrame {
                 pbtn[0].setEnabled(true);
                 pbtn[1].setEnabled(true);
                 if (puntuacion > 10) {
-//                    error.setText("" + errores++);
+
                     puntuacion -= 10;
+
                 }
+                sonidoError("error");
                 error.setText("" + errores++);
             } else {
+                sonidoAcierto("acierto");
                 acierto.setText("" + aciertos++);
             }
 
@@ -122,7 +174,6 @@ public class Nivel extends javax.swing.JFrame {
         segundo = false;
         caraArriba = false;
         puntuacion = 0;
-        
 
     }
 
@@ -579,7 +630,7 @@ public class Nivel extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(boton18, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boton19, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(boton20, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -619,7 +670,7 @@ public class Nivel extends javax.swing.JFrame {
                     .addComponent(boton11, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton15, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton19, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -685,7 +736,7 @@ public class Nivel extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(351, Short.MAX_VALUE)))
+                    .addContainerGap(337, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,7 +762,7 @@ public class Nivel extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(170, Short.MAX_VALUE)))
+                    .addContainerGap(161, Short.MAX_VALUE)))
         );
 
         pack();
@@ -719,167 +770,211 @@ public class Nivel extends javax.swing.JFrame {
 
     private void boton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton1MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton1MouseExited
 
     private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
         habiDesa(boton1);
+        sonidoEleccion("seleccion");
+
     }//GEN-LAST:event_boton1ActionPerformed
 
     private void boton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton2MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton2MouseExited
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
         habiDesa(boton2);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton2ActionPerformed
 
     private void boton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton3MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton3MouseExited
 
     private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
         habiDesa(boton3);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton3ActionPerformed
 
     private void boton4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton4MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton4MouseExited
 
     private void boton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton4ActionPerformed
         habiDesa(boton4);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton4ActionPerformed
 
     private void boton5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton5MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton5MouseExited
 
     private void boton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton5ActionPerformed
         habiDesa(boton5);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton5ActionPerformed
 
     private void boton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton6MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton6MouseExited
 
     private void boton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton6ActionPerformed
         habiDesa(boton6);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton6ActionPerformed
 
     private void boton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton7MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton7MouseExited
 
     private void boton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton7ActionPerformed
         habiDesa(boton7);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton7ActionPerformed
 
     private void boton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton8MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton8MouseExited
 
     private void boton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton8ActionPerformed
         habiDesa(boton8);
+        sonidoEleccion("seleccion");
+
     }//GEN-LAST:event_boton8ActionPerformed
 
     private void boton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton9MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton9MouseExited
 
     private void boton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton9ActionPerformed
         habiDesa(boton9);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton9ActionPerformed
 
     private void boton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton10MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton10MouseExited
 
     private void boton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton10ActionPerformed
         habiDesa(boton10);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton10ActionPerformed
 
     private void boton11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton11MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton11MouseExited
 
     private void boton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton11ActionPerformed
         habiDesa(boton11);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton11ActionPerformed
 
     private void boton12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton12MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton12MouseExited
 
     private void boton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton12ActionPerformed
         habiDesa(boton12);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton12ActionPerformed
 
     private void boton13MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton13MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton13MouseExited
 
     private void boton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton13ActionPerformed
         habiDesa(boton13);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton13ActionPerformed
 
     private void boton14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton14MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton14MouseExited
 
     private void boton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton14ActionPerformed
         habiDesa(boton14);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton14ActionPerformed
 
     private void boton15MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton15MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton15MouseExited
 
     private void boton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton15ActionPerformed
         habiDesa(boton15);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton15ActionPerformed
 
     private void boton16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton16MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton16MouseExited
 
     private void boton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton16ActionPerformed
         habiDesa(boton16);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton16ActionPerformed
 
     private void boton17MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton17MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton17MouseExited
 
     private void boton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton17ActionPerformed
         habiDesa(boton17);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton17ActionPerformed
 
     private void boton18MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton18MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton18MouseExited
 
     private void boton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton18ActionPerformed
         habiDesa(boton18);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton18ActionPerformed
 
     private void boton19MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton19MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton19MouseExited
 
     private void boton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton19ActionPerformed
         habiDesa(boton19);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton19ActionPerformed
 
     private void boton20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton20MouseExited
         comparacion();
+
     }//GEN-LAST:event_boton20MouseExited
 
     private void boton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton20ActionPerformed
         habiDesa(boton20);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton20ActionPerformed
 
     private void reiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reiniciarActionPerformed
-      reinicio();
-        
+        reinicio();
+        sonidoReinicio("reinicio");
+
+
     }//GEN-LAST:event_reiniciarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

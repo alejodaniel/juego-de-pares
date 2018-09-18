@@ -8,6 +8,7 @@ package OrdenPares;
 import OrdenPares.Interfaz;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.applet.AudioClip;
 
 public class Inicio extends javax.swing.JFrame {
 
@@ -79,6 +80,7 @@ public class Inicio extends javax.swing.JFrame {
         jMenu3.setText("JUEGO");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuItem1.setText("NIVEL 1");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +90,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem1);
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuItem2.setText("NIVEL 2");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +102,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jMenu1.add(jMenu3);
 
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuItem3.setText("SALIR");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +120,7 @@ public class Inicio extends javax.swing.JFrame {
         jMenu4.setText("INFORMACION");
         jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
+        infor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         infor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         infor.setText("INFORMACION DE JUEGO");
         infor.addActionListener(new java.awt.event.ActionListener() {

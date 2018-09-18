@@ -5,10 +5,18 @@
  */
 package OrdenPares;
 
+import java.io.IOException;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Interfaz extends javax.swing.JFrame {
+
+    public Clip clip;
+    public String ruta = "/Sonido/";
 
     private AleatorioBotones log = new AleatorioBotones();
     private boolean caraArriba = false;
@@ -24,6 +32,50 @@ public class Interfaz extends javax.swing.JFrame {
 
     }
 
+    public void sonidoEleccion(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
+    }
+
+    public void sonidoAcierto(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
+    }
+
+    public void sonidoError(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
+    }
+
+    public void sonidoReinicio(String archivo) {
+
+        try {
+            clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(getClass().getResourceAsStream(ruta + archivo + ".wav")));
+            clip.start();
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+
+        }
+    }
+
     private void imagenesBotones() {
         int[] numeros = log.getPosicionBotonesAleatorios();
         boton1.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/num" + numeros[0] + ".png")));
@@ -37,6 +89,8 @@ public class Interfaz extends javax.swing.JFrame {
         boton9.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/num" + numeros[8] + ".png")));
         boton10.setDisabledIcon(new ImageIcon(getClass().getResource("/imagenes/num" + numeros[9] + ".png")));
     }
+    int errores = 1;
+    int aciertos = 1;
 
     private void habilitarDesabilitar(JButton btn) {
 
@@ -46,7 +100,6 @@ public class Interfaz extends javax.swing.JFrame {
             pbtn[0] = btn;
             caraArriba = true;
             segundo = false;
-            aciertos.setText("" + caraArriba);
 
         } else {
             btn.setEnabled(false);
@@ -68,11 +121,15 @@ public class Interfaz extends javax.swing.JFrame {
                 pbtn[1].setEnabled(true);
                 if (puntuacion > 10) {
                     puntuacion -= 10;
-                    
+
                 }
-
+//                errores.setText("" + errores++);
+                sonidoError("error");
+                errar.setText("" + errores++);
+            } else {
+                sonidoAcierto("acierto");
+                acertar.setText("" + aciertos++);
             }
-
             caraArriba = false;
         }
     }
@@ -105,7 +162,6 @@ public class Interfaz extends javax.swing.JFrame {
                 && !boton8.isEnabled()
                 && !boton9.isEnabled()
                 && !boton10.isEnabled()) {
-//            JOptionPane.showMessageDialog(this, "su puntaje es: " + puntuacion);
             puntaje.setText("" + puntuacion);
 
         }
@@ -131,8 +187,8 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        aciertos = new javax.swing.JLabel();
-        errores = new javax.swing.JLabel();
+        acertar = new javax.swing.JLabel();
+        errar = new javax.swing.JLabel();
         puntaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -394,9 +450,9 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("PUNTAJE:");
 
-        aciertos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        acertar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        errores.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        errar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         puntaje.setBackground(new java.awt.Color(0, 0, 0));
         puntaje.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -418,12 +474,12 @@ public class Interfaz extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(puntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(errores, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(errar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(aciertos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(acertar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -434,11 +490,11 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(aciertos, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(acertar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(errores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(errar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
@@ -459,22 +515,27 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton1ActionPerformed
         habilitarDesabilitar(boton1);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton1ActionPerformed
 
     private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
         habilitarDesabilitar(boton2);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton2ActionPerformed
 
     private void boton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton3ActionPerformed
         habilitarDesabilitar(boton3);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton3ActionPerformed
 
     private void boton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton4ActionPerformed
         habilitarDesabilitar(boton4);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton4ActionPerformed
 
     private void boton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton6ActionPerformed
         habilitarDesabilitar(boton6);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton6ActionPerformed
 
     private void boton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton1MouseExited
@@ -503,10 +564,12 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void boton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton5ActionPerformed
         habilitarDesabilitar(boton5);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        reiniciar();   
+        reiniciar();
+        sonidoReinicio("reinicio");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void boton7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton7MouseExited
@@ -515,6 +578,8 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void boton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton7ActionPerformed
         habilitarDesabilitar(boton7);
+        sonidoEleccion("seleccion");
+
     }//GEN-LAST:event_boton7ActionPerformed
 
     private void boton8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton8MouseExited
@@ -523,6 +588,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void boton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton8ActionPerformed
         habilitarDesabilitar(boton8);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton8ActionPerformed
 
     private void boton9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton9MouseExited
@@ -531,6 +597,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void boton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton9ActionPerformed
         habilitarDesabilitar(boton9);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton9ActionPerformed
 
     private void boton10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton10MouseExited
@@ -539,6 +606,7 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void boton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton10ActionPerformed
         habilitarDesabilitar(boton10);
+        sonidoEleccion("seleccion");
     }//GEN-LAST:event_boton10ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -547,7 +615,7 @@ public class Interfaz extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel aciertos;
+    private javax.swing.JLabel acertar;
     private javax.swing.JButton boton1;
     private javax.swing.JButton boton10;
     private javax.swing.JButton boton2;
@@ -558,7 +626,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JButton boton7;
     private javax.swing.JButton boton8;
     private javax.swing.JButton boton9;
-    private javax.swing.JLabel errores;
+    private javax.swing.JLabel errar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
