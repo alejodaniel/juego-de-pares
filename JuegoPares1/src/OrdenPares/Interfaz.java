@@ -13,6 +13,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+
 public class Interfaz extends javax.swing.JFrame {
 
     public Clip clip;
@@ -610,6 +611,7 @@ public class Interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_boton10ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

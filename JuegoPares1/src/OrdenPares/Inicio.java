@@ -5,10 +5,8 @@
  */
 package OrdenPares;
 
-import OrdenPares.Interfaz;
-import javax.swing.JFrame;
+
 import javax.swing.JOptionPane;
-import java.applet.AudioClip;
 
 public class Inicio extends javax.swing.JFrame {
 
